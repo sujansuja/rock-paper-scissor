@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Rock-Paper-Scissor Game</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Mono:wght@300&display=swap" rel="stylesheet"> 
+        <script>
+            choices = [null, "Rock", "Paper", "Scissor"];
+            total = 0;
+            won = 0;
+function play_game(user_c){
+    total+=1;
+    c_choice = Math.floor(Math.random() * 3 + 1);
+    while (c_choice == user_c){
+        c_choice = Math.floor(Math.random() * 3 + 1);
+    }
+    console.log(c_choice);
+    if((user_c == 1 && c_choice == 2) || (user_c == 2 && c_choice == 1)){
+        result = 2;
+    }
+    else if((user_c == 2 && c_choice == 3) || (user_c == 3 && c_choice == 2)){
+        result = 3;
+    }
+    else{
+        result = 1;
+    }
+
+    if(result == c_choice){
+        winner = "Computer";
+    }
+    else{
+        winner = "User";
+        won+=1;
+    }
+
+    document.getElementById("result").innerHTML = "So " + winner + " wins";
+    document.getElementById("choices").innerHTML = choices[user_c] + " v/s " + choices[c_choice];
+    document.getElementById("start").innerHTML = "User v/s Computer";
+    document.getElementById("total").innerHTML = total;
+    document.getElementById("t_won").innerHTML = won;
+    // document.querySelector("#result").appendChild(print)
+    // alert(user_c);
+}
+        </script>
+        <style>
+            *{
+                margin: 0;
+                padding: 0;
+                box-sizing: border-box;
+                /* border: 1px solid red; */
+            }
+            body{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                font-family: 'Red Hat Mono', monospace;
+            }
+            div p, h2, h1{
+                position: relative;
+                font-size: 1.5rem;
+                margin: 20px 0;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+            }
+            h2{
+                font-weight: 600;
+                font-family: 'Montserrat', sans-serif;
+            }
+            h1{
+                font-family: 'Montserrat', sans-serif;
+                font-weight: 600;
+                font-size: 2rem;
+            }
+            span{
+                font-family: 'Montserrat', sans-serif;
+            }
+            button{
+                transform: scale(2.3);
+                padding: 0 1.2em .2em 1.2em;
+                margin: 50px;
+                cursor: pointer;
+                outline: none;
+                border: 1px solid black;
+                border-radius: 3px;
+                background-color: #000;
+                color: #fff;
+                font-family: 'Ramaraja', serif;
+                letter-spacing: 1px;
+            }
+            button:hover, button:active{
+                background-color: #fff;
+                color: #000;
+            }
+            h3{
+                position: absolute;
+                top: 30px;
+                right: 30px;
+            }
+            
+            @media (max-width: 550px){
+                button{
+                    transform: scale(1.8);
+                    padding: 0 0.5em;
+                    margin: 25px;
+                }
+            }
+        </style>
+    </head>
+    <body>
+        <h3>Times you won: <span id="t_won">0</span>/<span id="total">0</span></h3>
+        <div>
+            <h1>Rock-Paper-Scissor Game</h1>
+            <p id="start">Start the game</p>
+            <p id="choices"></p>
+            <h2 id="result"></h2>
+            <div>
+                <button id="rock-btn" onclick="play_game(1)">Rock</button>
+                <button id="paper-btn" onclick="play_game(2)">Paper</button>
+                <button id="scissor-btn" onclick="play_game(3)">Scissor</button>
+            </div>
+        </div>
+    </body>
+</html>
